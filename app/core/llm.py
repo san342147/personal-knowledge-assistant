@@ -24,8 +24,8 @@ def get_chat_model(settings: Settings, temperature: float = 0.2):
     """
     if not settings.api_key:
         raise LLMError(
-            "No API key found. Set XAI_API_KEY (recommended), GROK_API_KEY, "
-            "or OPENAI_API_KEY in your environment or .env file."
+            "No API key found. In the project folder, edit .env and set "
+            "GROQ_API_KEY=... (or XAI_API_KEY / OPENAI_API_KEY)."
         )
 
     try:

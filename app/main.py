@@ -109,6 +109,8 @@ def _settings():
 def _ensure_rag(settings) -> RAGService:
     if st.session_state.rag is None:
         st.session_state.rag = RAGService(settings)
+    else:
+        st.session_state.rag.settings = settings
     return st.session_state.rag
 
 

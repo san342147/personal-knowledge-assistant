@@ -152,19 +152,18 @@ class RAGService:
             for secret in filter(None, [self.settings.api_key]):
                 if secret and secret in msg:
                     msg = msg.replace(secret, secret[:6] + "…" + secret[-4:])
-            # Common gateway wording
-            if "bad forward key" in msg.lower() or "unauthorized" in msg.lower():
+            if "invalid api key" in msg.lower() or "unauthorized" in msg.lower():
                 msg += (
-                    " | Tip: stop Streamlit completely (Ctrl+C), confirm .env has "
-                    "XAI_API_KEY=... and OPENAI_BASE_URL=https://api.x.ai/v1 "
-                    "and LLM_MODEL=grok-4.5, then run start.bat again."
+                    " | The key in .env was rejected. Open the project folder, "
+                    "edit .env, set GROQ_API_KEY=your_key (no quotes, no spaces), "
+                    "save, then fully stop Streamlit and run start.bat again. "
+                    "Get a new key at https://console.groq.com/keys if this one is old."
                 )
             return RAGResult(
                 answer="",
                 error=(
-                    f"LLM request failed: {msg}. "
-                    "Check XAI_API_KEY, base URL (https://api.x.ai/v1), "
-                    "model name, and restart Streamlit after editing .env."
+                    f"LLM request failed: {msg} "
+                    f"(using {self.settings.llm_model} @ {self.settings.base_url})."
                 ),
                 sources=docs,
             )

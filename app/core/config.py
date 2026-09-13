@@ -15,7 +15,6 @@ from dotenv import load_dotenv
 
 # Project root: personal-knowledge-assistant/
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-load_dotenv(PROJECT_ROOT / ".env")
 
 
 def _first_env(*names: str, default: str = "") -> str:
@@ -55,7 +54,8 @@ class Settings:
 
 
 def get_settings() -> Settings:
-    """Build settings from environment (re-read each call so .env edits apply after restart)."""
+    """Build settings from environment (re-read .env on every call)."""
+    load_dotenv(PROJECT_ROOT / ".env", override=True)
     upload = PROJECT_ROOT / "data" / "uploads"
     vector = PROJECT_ROOT / "vectorstore"
     upload.mkdir(parents=True, exist_ok=True)
