@@ -1,0 +1,32 @@
+# Environment & secrets
+.env
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# App data (local knowledge base)
+data/uploads/*
+!data/uploads/.gitkeep
+vectorstore/*
+!vectorstore/.gitkeep
+
+# Streamlit / IDE
+.streamlit/secrets.toml
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Local assistant / editor folders (not part of the app)
+.agents/
+.claude/
