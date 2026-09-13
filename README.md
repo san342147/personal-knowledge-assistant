@@ -25,7 +25,7 @@ Nothing in the knowledge base is sent to an embedding API. Only the retrieved sn
 | Source display | Document name + page + snippet |
 | Session memory | Chat history in Streamlit session state |
 | Clear KB / Clear chat | Reset index or conversation |
-| OpenAI-compatible LLM | Works with **xAI Grok** or any OpenAI-style endpoint |
+| OpenAI-compatible LLM | Groq by default (`openai/gpt-oss-20b`); xAI or any OpenAI-style endpoint also works |
 
 ---
 
@@ -43,7 +43,7 @@ User uploads ──► Document processor (load + chunk)
 User question ──► Similarity search (Top-K)
                         │
                         ▼
-              Context + prompt ──► LLM (Grok / OpenAI-compatible)
+              Context + prompt ──► LLM (Groq / OpenAI-compatible)
                         │
                         ▼
               Answer + sources in Streamlit UI
@@ -97,35 +97,34 @@ python -m venv .venv
 pip install -r requirements.txt
 
 copy .env.example .env
-# Edit .env → set XAI_API_KEY=...
+# Edit .env → set GROQ_API_KEY=...
 
 streamlit run app/main.py
 ```
 
 ---
 
-## API key setup (xAI / Grok)
+## API key setup (Groq)
 
-1. Create a key at [https://console.x.ai](https://console.x.ai)
+1. Create a key at [https://console.groq.com/keys](https://console.groq.com/keys)
 2. In `.env`:
+
+```env
+GROQ_API_KEY=gsk_xxxxxxxx
+OPENAI_BASE_URL=https://api.groq.com/openai/v1
+LLM_MODEL=openai/gpt-oss-20b
+```
+
+`llama-3.3-70b-versatile` is Enterprise-only on Groq now. Use `openai/gpt-oss-20b` or `openai/gpt-oss-120b` on the free/developer plan.
+
+Also accepted: `XAI_API_KEY`, `GROK_API_KEY`, `OPENAI_API_KEY`.
+
+### Switch to xAI / Grok
 
 ```env
 XAI_API_KEY=xai-xxxxxxxx
 OPENAI_BASE_URL=https://api.x.ai/v1
 LLM_MODEL=grok-4.5
-```
-
-Also accepted:
-
-- `GROK_API_KEY`
-- `OPENAI_API_KEY` (with any compatible `OPENAI_BASE_URL`)
-
-### Switch to another OpenAI-compatible provider
-
-```env
-OPENAI_API_KEY=sk-...
-OPENAI_BASE_URL=https://api.openai.com/v1
-LLM_MODEL=gpt-4o-mini
 ```
 
 No code changes required.
@@ -147,9 +146,10 @@ No code changes required.
 
 | Variable | Default | Meaning |
 |----------|---------|---------|
-| `XAI_API_KEY` | — | xAI / Grok API key |
-| `OPENAI_BASE_URL` | `https://api.x.ai/v1` | Chat API base URL |
-| `LLM_MODEL` | `grok-4.5` | Chat model id |
+| `GROQ_API_KEY` | — | Groq API key (recommended) |
+| `XAI_API_KEY` | — | xAI / Grok API key (optional) |
+| `OPENAI_BASE_URL` | `https://api.groq.com/openai/v1` | Chat API base URL |
+| `LLM_MODEL` | `openai/gpt-oss-20b` | Chat model id |
 | `EMBEDDING_MODEL` | `sentence-transformers/all-MiniLM-L6-v2` | Local embedder |
 | `CHUNK_SIZE` | `1000` | Characters per chunk |
 | `CHUNK_OVERLAP` | `200` | Overlap between chunks |
