@@ -1,0 +1,297 @@
+[
+  {
+    "id": "q01",
+    "question": "When is the station open on weekdays?",
+    "answerable": true,
+    "expected_answer": "The station is open Monday to Friday from 08:30 to 17:30.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 1,
+        "text": "The station is open Monday to Friday from 08:30 to 17:30."
+      }
+    ]
+  },
+  {
+    "id": "q02",
+    "question": "Is it open on Sundays?",
+    "answerable": true,
+    "expected_answer": "The station is closed to visitors on Sundays.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 1,
+        "text": "The station is closed to visitors on Sundays."
+      }
+    ]
+  },
+  {
+    "id": "q03",
+    "question": "How far ahead must visitors book?",
+    "answerable": true,
+    "expected_answer": "Visitors must book at least two working days before arrival.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 2,
+        "text": "Visitors must book at least two working days before arrival."
+      }
+    ]
+  },
+  {
+    "id": "q04",
+    "question": "How many visitors can one host supervise?",
+    "answerable": true,
+    "expected_answer": "One host may supervise no more than four visitors at a time.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 2,
+        "text": "One host may supervise no more than four visitors at a time."
+      }
+    ]
+  },
+  {
+    "id": "q05",
+    "question": "How long is safety induction valid?",
+    "answerable": true,
+    "expected_answer": "Safety induction remains valid for twelve months from completion.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 3,
+        "text": "Safety induction remains valid for twelve months from completion."
+      }
+    ]
+  },
+  {
+    "id": "q06",
+    "question": "Who may enter the wet laboratory alone?",
+    "answerable": true,
+    "expected_answer": "Only staff with current safety induction and wet-laboratory authorization may enter the wet laboratory alone.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 3,
+        "text": "Only staff with current safety induction and wet-laboratory authorization may enter the wet laboratory alone."
+      }
+    ]
+  },
+  {
+    "id": "q07",
+    "question": "What is the maximum equipment loan period?",
+    "answerable": true,
+    "expected_answer": "The maximum equipment loan period is seven calendar days.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 4,
+        "text": "The maximum equipment loan period is seven calendar days."
+      }
+    ]
+  },
+  {
+    "id": "q08",
+    "question": "How early must a loan extension be requested?",
+    "answerable": true,
+    "expected_answer": "Request a loan extension at least 24 hours before the scheduled return.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 4,
+        "text": "Request a loan extension at least 24 hours before the scheduled return."
+      }
+    ]
+  },
+  {
+    "id": "q09",
+    "question": "What happens when equipment is damaged?",
+    "answerable": true,
+    "expected_answer": "Stop using damaged equipment, label it out of service, and notify the equipment coordinator immediately.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 5,
+        "text": "Stop using damaged equipment, label it out of service, and notify the equipment coordinator immediately."
+      }
+    ]
+  },
+  {
+    "id": "q10",
+    "question": "At what temperature are water samples stored?",
+    "answerable": true,
+    "expected_answer": "Store water samples at 4 degrees Celsius, with an acceptable range of 2 to 6 degrees Celsius.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 5,
+        "text": "Store water samples at 4 degrees Celsius, with an acceptable range of 2 to 6 degrees Celsius."
+      }
+    ]
+  },
+  {
+    "id": "q11",
+    "question": "How soon must water samples be processed?",
+    "answerable": true,
+    "expected_answer": "Process water samples within 24 hours of collection.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 6,
+        "text": "Process water samples within 24 hours of collection."
+      }
+    ]
+  },
+  {
+    "id": "q12",
+    "question": "What information belongs on a sample label?",
+    "answerable": true,
+    "expected_answer": "Each sample label must include the sample ID, collection date and time, site code, and collector initials.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 6,
+        "text": "Each sample label must include the sample ID, collection date and time, site code, and collector initials."
+      }
+    ]
+  },
+  {
+    "id": "q13",
+    "question": "How long are raw sensor files retained?",
+    "answerable": true,
+    "expected_answer": "Retain raw sensor files for five years after collection.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 7,
+        "text": "Retain raw sensor files for five years after collection."
+      }
+    ]
+  },
+  {
+    "id": "q14",
+    "question": "Where is the daily backup stored?",
+    "answerable": true,
+    "expected_answer": "The daily backup is stored on the encrypted vault named NS-Vault-02.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 7,
+        "text": "The daily backup is stored on the encrypted vault named NS-Vault-02."
+      }
+    ]
+  },
+  {
+    "id": "q15",
+    "question": "Who approves sharing data outside the station?",
+    "answerable": true,
+    "expected_answer": "The data steward must approve sharing station data with external recipients.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 8,
+        "text": "The data steward must approve sharing station data with external recipients."
+      }
+    ]
+  },
+  {
+    "id": "q16",
+    "question": "How often are temperature probes calibrated?",
+    "answerable": true,
+    "expected_answer": "Temperature probes are calibrated every 90 days.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 8,
+        "text": "Temperature probes are calibrated every 90 days."
+      }
+    ]
+  },
+  {
+    "id": "q17",
+    "question": "What calibration error removes a probe from service?",
+    "answerable": true,
+    "expected_answer": "Remove a temperature probe from service when its absolute calibration error exceeds 0.5 degrees Celsius.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 9,
+        "text": "Remove a temperature probe from service when its absolute calibration error exceeds 0.5 degrees Celsius."
+      }
+    ]
+  },
+  {
+    "id": "q18",
+    "question": "What should staff do during a freezer alarm?",
+    "answerable": true,
+    "expected_answer": "During a freezer alarm, keep the door closed, notify the duty technician, and record the displayed temperature and alarm time.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 9,
+        "text": "During a freezer alarm, keep the door closed, notify the duty technician, and record the displayed temperature and alarm time."
+      }
+    ]
+  },
+  {
+    "id": "q19",
+    "question": "Where do people assemble during evacuation?",
+    "answerable": true,
+    "expected_answer": "The evacuation assembly point is the marked gravel area beside the east gate.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 10,
+        "text": "The evacuation assembly point is the marked gravel area beside the east gate."
+      }
+    ]
+  },
+  {
+    "id": "q20",
+    "question": "What checks are required before reopening after an evacuation?",
+    "answerable": true,
+    "expected_answer": "Reopening requires an all-clear from the incident lead and a completed building safety checklist.",
+    "evidence": [
+      {
+        "filename": "fieldguide.pdf",
+        "page": 10,
+        "text": "Reopening requires an all-clear from the incident lead and a completed building safety checklist."
+      }
+    ]
+  },
+  {
+    "id": "q21",
+    "question": "What is the station's Wi-Fi password?",
+    "answerable": false,
+    "expected_answer": "REFUSE",
+    "evidence": []
+  },
+  {
+    "id": "q22",
+    "question": "What is the director's salary?",
+    "answerable": false,
+    "expected_answer": "REFUSE",
+    "evidence": []
+  },
+  {
+    "id": "q23",
+    "question": "What antibiotic dose treats an infected sample collector?",
+    "answerable": false,
+    "expected_answer": "REFUSE",
+    "evidence": []
+  },
+  {
+    "id": "q24",
+    "question": "Which vendor sells the station's freezers?",
+    "answerable": false,
+    "expected_answer": "REFUSE",
+    "evidence": []
+  },
+  {
+    "id": "q25",
+    "question": "What was the station's total budget last year?",
+    "answerable": false,
+    "expected_answer": "REFUSE",
+    "evidence": []
+  }
+]

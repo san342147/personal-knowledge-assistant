@@ -1,0 +1,11 @@
+.env*
+.venv
+.git
+.cache
+vectorstore
+data/uploads
+logs
+eval/runs
+__pycache__
+.pytest_cache
+tmp

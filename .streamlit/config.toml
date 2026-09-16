@@ -1,20 +1,7 @@
 [server]
-headless = false
-port = 8501
-# Keep XSRF on; do not disable CORS (Streamlit overrides it anyway)
-enableXsrfProtection = true
-# Avoid file-watcher restarts that kill the black window on Windows
-fileWatcherType = "none"
+maxUploadSize = 20
+address = "127.0.0.1"
+headless = true
 
 [browser]
 gatherUsageStats = false
-serverAddress = "localhost"
-
-[runner]
-fastReruns = true
-
-[logger]
-level = "info"
-
-[client]
-toolbarMode = "minimal"

@@ -1,111 +1,43 @@
 @echo off
-setlocal EnableExtensions
-title Personal Knowledge Assistant
+setlocal
 cd /d "%~dp0"
-
-echo.
-echo  =====================================================
-echo   Personal Knowledge Assistant (RAG)
-echo  =====================================================
-echo   Folder: %CD%
-echo.
-
-REM Prefer project venv Python (most reliable on Windows)
-set "PY=.venv\Scripts\python.exe"
-if not exist "%PY%" (
-  echo  [INFO] Creating virtual environment .venv ...
-  where python >nul 2>&1
-  if errorlevel 1 (
-    echo  [ERROR] Python not found on PATH.
-    echo  Install Python 3.10+ from https://www.python.org/downloads/
-    echo  During install, check "Add Python to PATH".
-    goto :fail
-  )
-  python -m venv .venv
-  if errorlevel 1 (
-    echo  [ERROR] Failed to create .venv
-    goto :fail
-  )
-)
-
-if not exist "%PY%" (
-  echo  [ERROR] Still missing: %PY%
-  goto :fail
-)
-
-echo  Using: %PY%
-"%PY%" --version
-
-if not exist ".env" (
-  if exist ".env.example" (
-    echo  [WARN] No .env — copying .env.example to .env
-    copy /Y ".env.example" ".env" >nul
-    echo  Edit .env and set XAI_API_KEY, then run this again.
-  )
-)
-
-echo.
-echo  Checking dependencies (skip if already installed)...
-"%PY%" -c "import streamlit,langchain,langchain_openai,chromadb,sentence_transformers,pypdf,dotenv,openai" 2>nul
-if errorlevel 1 (
-  echo  Installing requirements — first time can take several minutes...
-  "%PY%" -m pip install --upgrade pip
-  "%PY%" -m pip install -r requirements.txt
-  if errorlevel 1 (
-    echo  [ERROR] pip install failed.
-    goto :fail
-  )
+set HF_HOME=%CD%\.cache\huggingface
+set HF_HUB_DISABLE_SYMLINKS_WARNING=1
+if exist .venv\Scripts\python.exe goto install
+where py >nul 2>nul
+if not errorlevel 1 (
+  py -3.12 -m venv .venv
 ) else (
-  echo  Dependencies OK.
+  python -c "import sys; assert sys.version_info[:2] == (3,12), 'Install Python 3.12 and enable Add to PATH'" >nul 2>nul
+  if errorlevel 1 goto missing_python
+  python -m venv .venv
 )
-
-REM Free port 8501 if a dead process is holding it
-echo.
-echo  Ensuring port 8501 is free...
-for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":8501" ^| findstr "LISTENING"') do (
-  echo  Stopping old process on 8501 (PID %%P^)...
-  taskkill /F /PID %%P >nul 2>&1
+if errorlevel 1 goto failed
+:install
+if exist .venv\.groundeddesk-installed goto configured
+.venv\Scripts\python.exe -m ensurepip --upgrade
+if errorlevel 1 goto failed
+.venv\Scripts\python.exe -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+if errorlevel 1 goto failed
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+if errorlevel 1 goto failed
+echo installed>.venv\.groundeddesk-installed
+:configured
+if not exist .env copy .env.example .env >nul
+.venv\Scripts\python.exe -c "from app.config import Settings; raise SystemExit(0 if Settings().groq_api_key.get_secret_value() else 1)"
+if errorlevel 1 (
+  echo Add your GROQ_API_KEY to .env, save it, then close Notepad to continue.
+  start /wait notepad.exe .env
 )
-
-echo.
-echo  =====================================================
-echo   Starting Streamlit
-echo   Open:  http://localhost:8501
-echo   Keep THIS window open while you use the app.
-echo   Press Ctrl+C to stop the server.
-echo  =====================================================
-echo.
-
-set PYTHONUNBUFFERED=1
-set PYTHONASYNCIODEBUG=0
-set STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
-
-"%PY%" -m streamlit run app/main.py --server.port 8501 --browser.gatherUsageStats false
-set "RC=%ERRORLEVEL%"
-
-echo.
-if not "%RC%"=="0" (
-  echo  [ERROR] Streamlit exited with code %RC%
-  echo  Common fixes:
-  echo    - Set XAI_API_KEY in .env
-  echo    - Close other apps using port 8501
-  echo    - Delete .venv and run start.bat again
-  goto :fail
-)
-
-echo  Streamlit stopped normally.
-echo.
-pause
-endlocal
+echo Starting GroundedDesk. Close the UI or press Ctrl+C here to stop both servers.
+.venv\Scripts\python.exe scripts\launch.py
+if errorlevel 1 goto failed
 exit /b 0
-
-:fail
-echo.
-echo  -----------------------------------------------------
-echo   Something went wrong. Read the messages above.
-echo   Window will stay open so you can copy the error.
-echo  -----------------------------------------------------
-echo.
+:missing_python
+echo Python 3.12 was not found. Install it from python.org with Add to PATH enabled.
 pause
-endlocal
+exit /b 1
+:failed
+echo GroundedDesk could not start. Read the error above and the README Windows notes.
+pause
 exit /b 1
